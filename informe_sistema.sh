@@ -13,6 +13,7 @@ HOSTNAME=$(hostname)
 SISTEMA_OPERATIVO=$(uname -o)
 KERNEL=$(uname -r)
 TIPO_PROCESADOR=$(uname -p)
+CPU=$(grep "model name" /proc/cpuinfo | uniq -f 2)
 
 # Imprimo el informe.
 echo
@@ -22,6 +23,7 @@ echo "Hostname: ${HOSTNAME}"
 echo "S.O.: ${SISTEMA_OPERATIVO}"
 echo "Kernel: ${KERNEL}"
 echo "Tipo de procesador: ${TIPO_PROCESADOR}"
+echo "CPU: ${CPU}"
 echo
 
 echo "FIN."
