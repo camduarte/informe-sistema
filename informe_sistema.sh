@@ -12,6 +12,7 @@ USUARIO=$(whoami)
 HOSTNAME=$(hostname)
 SISTEMA_OPERATIVO=$(uname -o)
 KERNEL=$(uname -r)
+TIPO_PROCESADOR=$(uname -p)
 
 # Imprimo el informe.
 echo
@@ -20,6 +21,7 @@ echo "Usuario: ${USUARIO}"
 echo "Hostname: ${HOSTNAME}"
 echo "S.O.: ${SISTEMA_OPERATIVO}"
 echo "Kernel: ${KERNEL}"
+echo "Tipo de procesador: ${TIPO_PROCESADOR}"
 echo
 
 echo "FIN."
