@@ -7,28 +7,28 @@
 echo "Iniciando informe del sistema."
 
 # Obtengo los datos.
-FECHA=$(date "+%d-%m-%Y %H:%M:%S %Z")
-USUARIO=$(whoami)
-HOSTNAME=$(hostname)
-SISTEMA_OPERATIVO=$(uname -o)
-KERNEL=$(uname -r)
-TIPO_PROCESADOR=$(uname -p)
-CPU=$(grep "model name" /proc/cpuinfo | uniq)
-MEMORIA_RAM=$(free -m | awk '/Mem:/ {print $2}')
-TAMANO_HD=$(df -h | awk '$6=="/" {print $2}')
+fecha=$(date "+%d-%m-%Y %H:%M:%S %Z")
+usuario=$(whoami)
+hostname=$(hostname)
+sistema_operativo=$(uname -o)
+kernel=$(uname -r)
+tipo_procesador=$(uname -p)
+cpu=$(grep "model name" /proc/cpuinfo | head -n 1)
+memoria_ram=$(free -m | awk '/Mem:/ {print $2}')
+tamano_hd=$(df -h | awk '$6=="/" {print $2}')
 
 # Imprimo el informe.
 echo
 echo "========== Informe del Sistema =========="
-echo "Fecha: ${FECHA}"
-echo "Usuario: ${USUARIO}"
-echo "Hostname: ${HOSTNAME}"
-echo "S.O.: ${SISTEMA_OPERATIVO}"
-echo "Kernel: ${KERNEL}"
-echo "Tipo de procesador: ${TIPO_PROCESADOR}"
-echo "CPU: ${CPU}"
-echo "Memoria RAM: ${MEMORIA_RAM} MB"
-echo "Tamaño disco rígido: ${TAMANO_HD}"
+echo "Fecha: ${fecha}"
+echo "Usuario: ${usuario}"
+echo "Hostname: ${hostname}"
+echo "S.O.: ${sistema_operativo}"
+echo "Kernel: ${kernel}"
+echo "Tipo de procesador: ${tipo_procesador}"
+echo "cpu: ${cpu}"
+echo "Memoria RAM: ${memoria_ram} MB"
+echo "Tamaño disco rígido: ${tamano_hd}"
 echo "========================================"
 echo
 
