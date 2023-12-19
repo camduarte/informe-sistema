@@ -19,6 +19,7 @@ TAMANO_HD=$(df -h | awk '$6=="/" {print $2}')
 
 # Imprimo el informe.
 echo
+echo "========== Informe del Sistema =========="
 echo "Fecha: ${FECHA}"
 echo "Usuario: ${USUARIO}"
 echo "Hostname: ${HOSTNAME}"
@@ -28,6 +29,7 @@ echo "Tipo de procesador: ${TIPO_PROCESADOR}"
 echo "CPU: ${CPU}"
 echo "Memoria RAM: ${MEMORIA_RAM} MB"
 echo "Tamaño disco rígido: ${TAMANO_HD}"
+echo "========================================"
 echo
 
 echo "Este script está sujeto a los términos de copyleft @ 2023 Christian Ariel Modesto Duarte"
