@@ -13,7 +13,7 @@ HOSTNAME=$(hostname)
 SISTEMA_OPERATIVO=$(uname -o)
 KERNEL=$(uname -r)
 TIPO_PROCESADOR=$(uname -p)
-CPU=$(grep "model name" /proc/cpuinfo | uniq -f 2)
+CPU=$(grep "model name" /proc/cpuinfo | uniq)
 MEMORIA_RAM=$(free -m | awk '/Mem:/ {print $2}')
 TAMANO_HD=$(df -h | awk '$6=="/" {print $2}')
 
