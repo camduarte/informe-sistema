@@ -15,6 +15,7 @@ KERNEL=$(uname -r)
 TIPO_PROCESADOR=$(uname -p)
 CPU=$(grep "model name" /proc/cpuinfo | uniq -f 2)
 MEMORIA_RAM=$(free -m | awk '/Mem:/ {print $2}')
+TAMANO_HD=$(df -h | awk '$6=="/" {print $2}')
 
 # Imprimo el informe.
 echo
@@ -26,7 +27,8 @@ echo "Kernel: ${KERNEL}"
 echo "Tipo de procesador: ${TIPO_PROCESADOR}"
 echo "CPU: ${CPU}"
 echo "Memoria RAM: ${MEMORIA_RAM} MB"
+echo "Tamaño disco rígido: ${TAMANO_HD}"
 echo
 
-echo "FIN."
+echo "Este script está sujeto a los términos de copyleft @ 2023 Christian Ariel Modesto Duarte"
 exit 0
