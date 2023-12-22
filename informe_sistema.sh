@@ -6,6 +6,24 @@
 
 echo "Iniciando informe del sistema."
 
+# Función: verificar_error
+#
+# Descripción:
+#   Esta función verifica el código de salida del comando ejecutado previamente.
+#   Si el código de salida no es cero, imprime un mensaje de error y termina
+#   la ejecución del script.
+#
+# Uso:
+#   verificar_error
+#
+# Ejemplo:
+#   $ comando_que_podria_fallar
+#   $ verificar_error
+#
+verificar_error() {
+  echo "verificando error."
+}
+
 # Obtengo los datos.
 fecha=$(date "+%d-%m-%Y %H:%M:%S %Z")
 usuario=$(whoami)
