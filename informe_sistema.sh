@@ -59,20 +59,35 @@ obtener_datos() {
   verificar_error "df -h"
 }
 
-# Imprimo el informe.
-echo
-echo "========== Informe del Sistema =========="
-echo "Fecha: ${fecha}"
-echo "Usuario: ${usuario}"
-echo "Hostname: ${hostname}"
-echo "S.O.: ${sistema_operativo}"
-echo "Kernel: ${kernel}"
-echo "Tipo de procesador: ${tipo_procesador}"
-echo "cpu: ${cpu}"
-echo "Memoria RAM: ${memoria_ram} MB"
-echo "Tamaño disco rígido: ${tamano_hd}"
-echo "========================================"
-echo
+# Función: imprimir_informe 
+#
+# Descripción:
+#   Imprime el informe con los datos del sistema.
+#
+# Uso:
+#   imprimir_informe
+#
+# Ejemplo:
+#   imprimir_informe
+#
+imprimir_informe() {
+  echo
+  echo "========== Informe del Sistema =========="
+  echo "Fecha: ${fecha}"
+  echo "Usuario: ${usuario}"
+  echo "Hostname: ${hostname}"
+  echo "S.O.: ${sistema_operativo}"
+  echo "Kernel: ${kernel}"
+  echo "Tipo de procesador: ${tipo_procesador}"
+  echo "cpu: ${cpu}"
+  echo "Memoria RAM: ${memoria_ram} MB"
+  echo "Tamaño disco rígido: ${tamano_hd}"
+  echo "========================================"
+  echo
+}
+
+obtener_datos
+imprimir_informe
 
 echo "Este script está sujeto a los términos de copyleft @ 2023 Christian Ariel Modesto Duarte"
 exit 0
