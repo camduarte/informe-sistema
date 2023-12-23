@@ -14,30 +14,38 @@ echo "Iniciando informe del sistema."
 #   la ejecución del script.
 #
 # Uso:
-#   verificar_error
+#   verificar_error <comando>
 #
 # Ejemplo:
 #   $ comando_que_podria_fallar
-#   $ verificar_error
+#   $ verificar_error "comando_que_podria_fallar"
 #
-function verificar_error() {
- # Verifica el código de salida ($?) del comando ejecutado previamente. 
+verificar_error() {
   if [ $? -ne 0 ]; then
-    echo "Error: Hubo un problema durante la ejecución del comando."
-    exit 1;
+    echo "Error: Hubo un problema durante la ejecución de '$1'."
+    exit 1
   fi
 }
 
 # Obtengo los datos.
 fecha=$(date "+%d-%m-%Y %H:%M:%S %Z")
+verificar_error "date"
 usuario=$(whoami)
+verificar_error "whoami"
 hostname=$(hostname)
+verificar_error "hostname"
 sistema_operativo=$(uname -o)
+verificar_error "uname -o"
 kernel=$(uname -r)
+verificar_error "uname -r"
 tipo_procesador=$(uname -p)
+verificar_error "uname -p"
 cpu=$(grep "model name" /proc/cpuinfo | head -n 1)
+verificar_error "grep"
 memoria_ram=$(free -m | awk '/Mem:/ {print $2}')
+verificar_error "free -m"
 tamano_hd=$(df -h | awk '$6=="/" {print $2}')
+verificar_error "df -h"
 
 # Imprimo el informe.
 echo
