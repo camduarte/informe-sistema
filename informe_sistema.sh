@@ -20,8 +20,12 @@ echo "Iniciando informe del sistema."
 #   $ comando_que_podria_fallar
 #   $ verificar_error
 #
-verificar_error() {
-  echo "verificando error."
+function verificar_error() {
+ # Verifica el código de salida ($?) del comando ejecutado previamente. 
+  if [ $? -ne 0 ]; then
+    echo "Error: Hubo un problema durante la ejecución del comando."
+    exit 1;
+  fi
 }
 
 # Obtengo los datos.
