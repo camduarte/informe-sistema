@@ -59,6 +59,41 @@ obtener_datos() {
   verificar_error "df -h"
 }
 
+# Función: obtener_fecha
+#
+# Descripción:
+#   Obtiene la fecha actual.
+#
+# Uso:
+#   obtener_fecha
+#
+# Ejemplo:
+#   obtener_fecha
+#
+obtener_fecha() {
+  echo "obteniendo fecha..."
+  fecha=$(date "+%d-%m-%Y %H:%M:%S %Z")
+  verificar_error "date"
+}
+
+# Función: obtener_usuario
+#
+# Descripción:
+#   Obtiene el nombre del usuario que está actualmente autenticado en la
+#   sesión de la terminal.
+#
+# Uso:
+#   obtener_usuario
+#
+# Ejemplo:
+#   obtener_usuario
+#
+obtener_usuario() {
+  echo "obteniendo usuario..."
+  usuario=$(whoami)
+  verificar_error "whoami"
+}
+
 # Función: imprimir_informe 
 #
 # Descripción:
