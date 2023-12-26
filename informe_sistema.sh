@@ -4,7 +4,7 @@
 # Crea un informe del sistema. #
 ################################
 
-echo "Iniciando informe del sistema."
+echo "Iniciando informe del sistema..."
 
 # Función: verificar_error
 #
@@ -39,24 +39,12 @@ verificar_error() {
 #   obtener_datos
 #
 obtener_datos() {
-  fecha=$(date "+%d-%m-%Y %H:%M:%S %Z")
-  verificar_error "date"
-  usuario=$(whoami)
-  verificar_error "whoami"
-  hostname=$(hostname)
-  verificar_error "hostname"
-  sistema_operativo=$(uname -o)
-  verificar_error "uname -o"
-  kernel=$(uname -r)
-  verificar_error "uname -r"
-  tipo_procesador=$(uname -p)
-  verificar_error "uname -p"
-  cpu=$(grep "model name" /proc/cpuinfo | head -n 1)
-  verificar_error "grep"
-  memoria_ram=$(free -m | awk '/Mem:/ {print $2}')
-  verificar_error "free -m"
-  tamano_hd=$(df -h | awk '$6=="/" {print $2}')
-  verificar_error "df -h"
+  obtener_fecha
+  obtener_usuario
+  obtener_hostname
+  obtener_sistema
+  obtener_memoria
+  obtener_tamano_hd
 }
 
 # Función: obtener_fecha
@@ -94,6 +82,79 @@ obtener_usuario() {
   verificar_error "whoami"
 }
 
+# Función: obtener_hostname
+#
+# Descripción:
+#   Obtiene el hostname.
+#
+# Uso:
+#   obtener_hostname
+#
+# Ejemplo:
+#   obtener_hostname
+#
+obtener_hostname() {
+  echo "obteniendo hostname..."
+  hostname=$(hostname)
+  verificar_error "hostname"
+}
+
+# Función: obtener_sistema
+#
+# Descripción:
+#   Obtiene S.O., kernel y tipo de procesador.
+#
+# Uso:
+#   obtener_sistema
+#
+# Ejemplo:
+#   obtener_sistema
+#
+obtener_sistema() {
+  echo "Obteniendo S.O., kernel y tipo de procesador..."
+  sistema_operativo=$(uname -o)
+  verificar_error "uname -o"
+  kernel=$(uname -r)
+  verificar_error "uname -r"
+  tipo_procesador=$(uname -p)
+  verificar_error "uname -p"
+}
+
+# Función: obtener_memoria
+#
+# Descripción:
+#   Obtiene el tamaño de la memoria RAM.
+#
+# Uso:
+#   obtener_memoria
+#
+# Ejemplo:
+#   obtener_memoria
+#
+obtener_memoria() {
+  echo "Obteniendo memoria RAM..."
+  memoria_ram=$(free -m | awk '/Mem:/ {print $2}')
+  verificar_error "free -m"
+}
+
+# Función: obtener_tamano_hd
+#
+# Descripción:
+#   Obtiene el tamaño del disco rígido.
+#
+# Uso:
+#   obtener_tamano_hd
+#
+# Ejemplo:
+#   obtener_tamano_hd
+#
+
+obtener_tamano_hd() {
+  echo "Obteniendo tamaño del disco rígido..."
+  tamano_hd=$(df -h | awk '$6=="/" {print $2}')
+  verificar_error "df -h"
+}
+
 # Función: imprimir_informe 
 #
 # Descripción:
@@ -106,6 +167,7 @@ obtener_usuario() {
 #   imprimir_informe
 #
 imprimir_informe() {
+  echo "Imprimiendo informe..."
   echo
   echo "========== Informe del Sistema =========="
   echo "Fecha: ${fecha}"
