@@ -44,6 +44,7 @@ obtener_datos() {
   obtener_hostname
   obtener_sistema
   obtener_memoria
+  obtener_cpu
   obtener_tamano_hd
 }
 
@@ -120,6 +121,22 @@ obtener_sistema() {
   verificar_error "uname -p"
 }
 
+# Función: obtener_cpu
+#
+# Descripción:
+#   Obtiene información sobre el CPU.
+#
+# Uso:
+#   obtener_cpu
+#
+# Ejemplo:
+#   obtener_cpu
+#
+obtener_cpu() {
+  echo "Obteniendo CPU..."
+  cpu=$(grep "model name" /proc/cpuinfo | head -n 1)
+}
+
 # Función: obtener_memoria
 #
 # Descripción:
@@ -135,6 +152,8 @@ obtener_memoria() {
   echo "Obteniendo memoria RAM..."
   memoria_ram=$(free -m | awk '/Mem:/ {print $2}')
   verificar_error "free -m"
+  echo "Obteniendo memoria Swap..."
+  memoria_swap=$(free -m | awk '/Swap:/ {print $2}')
 }
 
 # Función: obtener_tamano_hd
@@ -176,8 +195,9 @@ imprimir_informe() {
   echo "S.O.: ${sistema_operativo}"
   echo "Kernel: ${kernel}"
   echo "Tipo de procesador: ${tipo_procesador}"
-  echo "cpu: ${cpu}"
+  echo "CPU: ${cpu}"
   echo "Memoria RAM: ${memoria_ram} MB"
+  echo "Memoria Swap: ${memoria_swap} MB"
   echo "Tamaño disco rígido: ${tamano_hd}"
   echo "========================================"
   echo
