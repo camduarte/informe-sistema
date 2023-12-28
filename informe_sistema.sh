@@ -46,6 +46,7 @@ obtener_datos() {
   obtener_memoria
   obtener_cpu
   obtener_tamano_hd
+  obtener_tipo_sistema_archivos
 }
 
 # Función: obtener_fecha
@@ -167,11 +168,26 @@ obtener_memoria() {
 # Ejemplo:
 #   obtener_tamano_hd
 #
-
 obtener_tamano_hd() {
   echo "Obteniendo tamaño del disco rígido..."
   tamano_hd=$(df -h | awk '$6=="/" {print $2}')
   verificar_error "df -h"
+}
+
+# Función: obtener_tipo_sistema_archivos
+#
+# Descripción:
+#   Obtiene el tip de sistema de archivos de la raíz.
+#
+# Uso:
+#   obtener_tipo_sistema_archivos
+#
+# Ejemplo:
+#   obtener_tipo_sistema_archivos
+#
+obtener_tipo_sistema_archivos() {
+  tipo_sistema_archivos=$(df -h / | awk 'NR==2 {print $1}' | xargs blkid -s TYPE -o value)
+  verificar_error "blkid"
 }
 
 # Función: imprimir_informe 
@@ -199,6 +215,7 @@ imprimir_informe() {
   echo "Memoria RAM: ${memoria_ram} MB"
   echo "Memoria Swap: ${memoria_swap} MB"
   echo "Tamaño disco rígido: ${tamano_hd}"
+  echo "Tipo de sistema de archivos: ${tipo_sistema_archivos}"
   echo "========================================"
   echo
 }
